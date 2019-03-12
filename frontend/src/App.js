@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import './App.css';
-import Fruit from './Fruit.js';
 import Checkout from './Checkout.js'
 
 class App extends Component {
@@ -10,8 +9,6 @@ class App extends Component {
     	this.state = {total : 0}
 	}
 
-	Apple = new Fruit();
-	Orange = new Fruit();
 	Checkout = new Checkout();
 	cart = [];
 	total = 0;
@@ -51,6 +48,7 @@ class App extends Component {
 				
 			<div className = "main"> 
 				$ { this.state.total } 
+				<p>Cart:</p>
 				<ul>{ listCart }</ul>
 			</div>
 
