@@ -47,7 +47,7 @@ class App extends Component {
 			< /div> 
 				
 			<div className = "main"> 
-				$ { this.state.total } 
+				Total = ${ (this.state.total).toFixed(2) } 
 				<p>Cart:</p>
 				<ul>{ listCart }</ul>
 			</div>
