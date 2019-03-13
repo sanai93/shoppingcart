@@ -37,7 +37,7 @@ class Checkout extends Component {
 			request.fruits.push(cart[i]);
 		}
 		
-/*		fetch("http://localhost:8080/buy", {
+		fetch("http://localhost:8080/buy", {
 				method: 'post',
 				headers: {'Content-Type':'application/json'},
 				body: JSON.stringify(request)
@@ -46,7 +46,7 @@ class Checkout extends Component {
 			  .then(
 				(result) => {
 				console.log(result);
-				  t = result;
+				  total = result;
 				},
 				(error) => {
 				  this.setState({
@@ -54,14 +54,14 @@ class Checkout extends Component {
 					error
 				  });
 				}
-			  )*/
+			  )
 
-		this.scanCart(cart);
+/*		this.scanCart(cart);
 		this.checkForAppleDiscounts();
 		this.checkForOrangeDiscounts();
 		var totalApples = this.apples * .6;
 		var totalOranges = this.oranges * .25;
-		this.total = (totalApples + totalOranges) - this.discount;
+		this.total = (totalApples + totalOranges) - this.discount;*/
 		return this.state.total;
 	}
 	
