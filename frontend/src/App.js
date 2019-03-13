@@ -6,19 +6,36 @@ class App extends Component {
 	
 	constructor() {
     	super();
-    	this.state = {total : 0}
+    	this.state = {products: [], total : 0}
 	}
+	
+	componentDidMount() {
+    fetch("http://localhost:8080/products")
+      .then(res => res.json())
+      .then(
+        (result) => {
+		console.log(result);
+          this.setState({
+            isLoaded: true,
+            products: result,
+			total: 0
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
+
+  }
 
 	Checkout = new Checkout();
 	cart = [];
-	total = 0;
 
-	addAppleToCart(cart) {
-		this.cart.push("apple");
-	}
-
-	addOrangeToCart(cart) {
-		this.cart.push("orange");
+	addToCart(cart, name) {
+		this.cart.push(name);
 	}
 
 	getCheckout(cart) {
@@ -28,6 +45,7 @@ class App extends Component {
 
 	render() {
 		const listCart = this.cart.map((x) => <li> {x} </li>);
+		const listFruits = this.state.products.map((p) => <li><button className = "button" onClick={() => this.addToCart(this.cart, p.name) }> {p.name} </button></li>);
 		
 		return ( 
 			
@@ -36,10 +54,9 @@ class App extends Component {
 			< h1 > Shopping Cart < /h1> < /header>
 
 			< div className = "main" >
-				
-				< button className = "button" onClick={() => this.addAppleToCart(this.cart) }> Apple < /button> 
-
-				< button className = "button" onClick={() => this.addOrangeToCart(this.cart) }> Orange < /button>
+			
+				<ul> { listFruits } </ul>
+			
 			< /div>
 			
 			<div>

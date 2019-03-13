@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 
 class Checkout extends Component {
 	
-	total = 0;
-	apples = 0;
-	oranges = 0;
-	discount = 0;
+	constructor() {
+    	super();
+    	this.state = {total : 0}
+	}
 
 	scanCart(cart) {
 		for(var i = 0; i < cart.length; i++) {
@@ -30,16 +30,39 @@ class Checkout extends Component {
 	}
 
 	checkout(cart) {
+		
+		var request = {fruits: []};
+		var t = 0;
+		for(var i = 0; i < cart.length; i++) {
+			request.fruits.push(cart[i]);
+		}
+		
+/*		fetch("http://localhost:8080/buy", {
+				method: 'post',
+				headers: {'Content-Type':'application/json'},
+				body: JSON.stringify(request)
+			})
+			  .then(res => res.json())
+			  .then(
+				(result) => {
+				console.log(result);
+				  t = result;
+				},
+				(error) => {
+				  this.setState({
+					isLoaded: true,
+					error
+				  });
+				}
+			  )*/
+
 		this.scanCart(cart);
 		this.checkForAppleDiscounts();
 		this.checkForOrangeDiscounts();
-		console.log("apples: " + this.apples);
-		console.log("oranges: " + this.oranges);
 		var totalApples = this.apples * .6;
 		var totalOranges = this.oranges * .25;
 		this.total = (totalApples + totalOranges) - this.discount;
-		console.log("total: " + this.total);
-		return this.total;
+		return this.state.total;
 	}
 	
 }
