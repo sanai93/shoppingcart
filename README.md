@@ -1,7 +1,7 @@
 # shopping cart
 
 ## Backend
-Run as a normal Java Project. Will be running at http://localhost:8080
+First, build with gradle by running "gradle build". Then run as a normal Java Project. Will be running at http://localhost:8080
 
 ## Frontend
 Run as a React project
